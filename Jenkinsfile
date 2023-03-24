@@ -4,6 +4,11 @@ pipeline {
     stage('Test') {
       steps {
         echo 'test1'
+        catchError(buildResult: 'SUCCESS', message: 'shippai', stageResult: 'FAILURE') {
+          echo 'test'
+          sh 'exit 1'
+        }
+
       }
     }
 
